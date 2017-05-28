@@ -116,6 +116,8 @@ class m170405_112954_init extends Migration
 
         fclose($out);
         gzclose($gz);
+
+        return $out;
     }
 
     public function getCountryFields()
