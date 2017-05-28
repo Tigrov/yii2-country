@@ -2,7 +2,7 @@
     "name": "tigrov/yii2-country",
     "description": "Country data for Yii2 using Intl extension and more.",
     "keywords": ["continent", "region", "country", "timezone", "currency", "language", "locale", "time zone", "measurement", "intl", "i18n", "l10n", "internationalization", "localization", "yii2"],
-    "type": "library",
+    "type": "yii2-extension",
     "license": "MIT",
     "support": {
         "source": "https://github.com/tigrov/yii2-country"
