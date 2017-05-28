@@ -19,7 +19,7 @@
         "tigrov/intldata": "*"
     },
     "suggest": {
-        "rinvex/country": "Allow access to additional data of countries"
+        "rinvex/country": "Allows access to additional data of countries"
     },
     "autoload": {
         "psr-4": {
