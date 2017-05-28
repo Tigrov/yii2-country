@@ -16,6 +16,30 @@ The main classes:
 - Timezone
 - MeasurementSystem
 
+Installation
+------------
+
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
+```
+php composer.phar require --prefer-dist tigrov/yii2-country "*"
+```
+
+or add
+
+```
+"tigrov/yii2-country": "*"
+```
+
+to the require section of your `composer.json` file.
+
+**Apply migrations**
+```
+yii migrate --migrationPath=@vendor/tigrov/yii2-country/migrations
+```
+
 Usage
 -----
 
@@ -73,28 +97,6 @@ $us->divisions;
 // List of cities
 $us->cities;
 ```
-
-
-Installation
-------------
-
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
-
-Either run
-
-```
-php composer.phar require --prefer-dist tigrov/yii2-country "*"
-```
-
-or add
-
-```
-"tigrov/yii2-country": "*"
-```
-
-to the require section of your `composer.json` file.
-
- 
 	
 Addition
 --------
