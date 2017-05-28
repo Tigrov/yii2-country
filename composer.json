@@ -1,0 +1,29 @@
+{
+    "name": "tigrov/yii2-country",
+    "description": "Country data for Yii2 using Intl extension and more.",
+    "keywords": ["continent", "region", "country", "timezone", "currency", "language", "locale", "time zone", "measurement", "intl", "i18n", "l10n", "internationalization", "localization", "yii2"],
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/tigrov/yii2-country"
+    },
+    "authors": [
+        {
+            "name": "Sergei Tigrov",
+            "email": "rrr-r@ya.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "~2.0.0",
+        "tigrov/intldata": "*"
+    },
+    "suggest": {
+        "rinvex/country": "Allow access to additional data of countries"
+    },
+    "autoload": {
+        "psr-4": {
+            "tigrov\\country\\": "src/"
+        }
+    }
+}

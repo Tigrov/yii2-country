@@ -1,0 +1,12 @@
+.idea
+
+# composer vendor dir
+/vendor
+
+# composer itself is not needed
+composer.phar
+
+# ungzipped files
+/migrations/data/city.csv
+/migrations/data/city_translation.csv
+/migrations/data/division_translation.csv
