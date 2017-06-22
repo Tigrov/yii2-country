@@ -14,6 +14,44 @@ namespace tigrov\country;
  * @property string $latitude
  * @property string $longitude
  * @property string $name_en
+ *
+ * @property string $name
+ * @property string $continentCode
+ * @property string $continentName
+ * @property string $regionCode
+ * @property string $regionName
+ * @property string $subregionCode
+ * @property string $subregionName
+ * @property string $measurementSystemCode
+ * @property string $measurementSystemName
+ * @property string $localeCode
+ * @property string $localeName
+ * @property string $languageCode
+ * @property string $languageName
+ * @property string $currencyCode
+ * @property string $currencyName
+ * @property string $timezoneCode
+ * @property string $timezoneName
+ * @property string[] $localeCodes
+ * @property string[] $localeNames
+ * @property string[] $languageCodes
+ * @property string[] $languageNames
+ *
+ * @property Division[] $divisions
+ * @property City[] $cities
+ *
+ * @property City $capital
+ * @property Continent $continent
+ * @property Region $region
+ * @property Subregion $subregion
+ * @property MeasurementSystem $measurementSystem
+ * @property Language $language
+ * @property Locale $locale
+ * @property Currency $currency
+ * @property Timezone $timezone
+ * @property Locale[] $locales
+ * @property Language[] $languages
+ * @property \Rinvex\Country\Country $rinvex
  */
 class Country extends \yii\db\ActiveRecord implements ModelInterface
 {
@@ -31,7 +69,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
         'locale' => Locale::class,
         'currency' => Currency::class,
         'timezone' => Timezone::class,
-        'capital' => City::class,
     ];
 
     /**
@@ -115,14 +152,17 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     public function __get($name)
     {
         $name = strtolower($name);
-        if (isset(static::OBJECT_CLASSES[$name])) {
-            if (!isset($this->_objects[$name])) {
-                $codeGetter = 'get' . $name . 'Code';
-                $className = static::OBJECT_CLASSES[$name];
-                $this->_objects[$name] = $className::create($this->$codeGetter());
-            }
+        $objectName = $name;
+        $classMethod = 'create';
+        if (substr_compare($name, 'name', -4)) {
+            $objectName = substr($name, 0, -4);
+            $classMethod = 'name';
+        }
+        if (isset(static::OBJECT_CLASSES[$objectName])) {
+            $codeGetter = 'get' . $objectName . 'Code';
+            $className = static::OBJECT_CLASSES[$objectName];
 
-            return $this->_objects[$name];
+            return $className::$classMethod($this->$codeGetter());
         }
 
         return parent::__get($name);
@@ -155,25 +195,9 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     /**
      * @return string
      */
-    public function getContinentName()
-    {
-        return Continent::name($this->getContinentCode());
-    }
-
-    /**
-     * @return string
-     */
     public function getRegionCode()
     {
         return Region::countryRegionCode($this->code);
-    }
-
-    /**
-     * @return string
-     */
-    public function getRegionName()
-    {
-        return Region::name($this->getRegionCode());
     }
 
     /**
@@ -185,14 +209,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
-     * @return string
-     */
-    public function getSubregionName()
-    {
-        return Region::name($this->getSubregionCode());
-    }
-
-    /**
      * Get measurement system code
      *
      * @return string measurement system code 'US' or 'SI'
@@ -200,16 +216,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     public function getMeasurementSystemCode()
     {
         return MeasurementSystem::countryMeasurementSystemCode($this->code);
-    }
-
-    /**
-     * Get measurement system name
-     *
-     * @return string measurement system name
-     */
-    public function getMeasurementSystemName()
-    {
-        return MeasurementSystem::name($this->getMeasurementSystemCode());
     }
 
     /**
@@ -301,33 +307,25 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     /**
      * @return string
      */
-    public function getLocaleName()
+    public function getLanguageCode()
     {
-        return Locale::name($this->getLocaleCode());
+        return $this->language_code;
     }
 
     /**
      * @return string
      */
-    public function getLanguageName()
+    public function getCurrencyCode()
     {
-        return Language::name($this->language_code);
+        return $this->currency_code;
     }
 
     /**
      * @return string
      */
-    public function getCurrencyName()
+    public function getTimezoneCode()
     {
-        return Currency::name($this->currency_code);
-    }
-
-    /**
-     * @return string
-     */
-    public function getTimezoneName()
-    {
-        return Timezone::name($this->timezone_code);
+        return $this->timezone_code;
     }
 
     /**
@@ -347,10 +345,10 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
-     * @return \yii\db\BaseActiveRecord
+     * @return City
      */
     public function getCapital()
     {
-        return City::findOne($this->capital_geoname_id);
+        return City::create($this->capital_geoname_id);
     }
 }
