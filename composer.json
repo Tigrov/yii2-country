@@ -25,5 +25,8 @@
         "psr-4": {
             "tigrov\\country\\": "src/"
         }
+    },
+    "extra": {
+        "bootstrap": "tigrov\\country\\Bootstrap"
     }
 }

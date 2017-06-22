@@ -37,7 +37,7 @@ to the require section of your `composer.json` file.
 
 **Apply migrations**
 ```
-yii migrate --migrationPath=@vendor/tigrov/yii2-country/migrations
+yii migrate
 ```
 
 Usage

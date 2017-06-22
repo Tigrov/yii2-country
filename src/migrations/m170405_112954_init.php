@@ -1,5 +1,7 @@
 <?php
 
+namespace tigrov\country\migrations;
+
 use yii\db\Migration;
 
 class m170405_112954_init extends Migration
