@@ -6,11 +6,12 @@ use yii\db\Migration;
 
 class m170405_112954_init extends Migration
 {
-    const COUNTRY_CSV = __DIR__ . '/data/country.csv';
-    const DIVISION_CSV = __DIR__ . '/data/division.csv';
-    const DIVISION_TRANSLATION_CSV = __DIR__ . '/data/division_translation.csv.gz';
-    const CITY_CSV = __DIR__ . '/data/city.csv.gz';
-    const CITY_TRANSLATION_CSV = __DIR__ . '/data/city_translation.csv.gz';
+    const DATA_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR;
+    const COUNTRY_CSV = self::DATA_DIR . 'country.csv';
+    const DIVISION_CSV = self::DATA_DIR . 'division.csv';
+    const DIVISION_TRANSLATION_CSV = self::DATA_DIR . 'division_translation.csv.gz';
+    const CITY_CSV = self::DATA_DIR . 'city.csv.gz';
+    const CITY_TRANSLATION_CSV = self::DATA_DIR . 'city_translation.csv.gz';
 
     const CSV_DELIMITER = ';';
     const INSERT_ROWS = 10000;
