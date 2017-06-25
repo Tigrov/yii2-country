@@ -10,10 +10,12 @@ use yii\db\Expression;
  * @property integer $geoname_id
  * @property string $country_code
  * @property string $division_code
+ * @property string $language_codes
  * @property string $name_en
  * @property string $timezone_code
  *
  * @property string $name local name of the region
+ * @property Language[] $languages
  * @property City[] $cities
  * @property Country $country
  * @property Timezone $timezone
@@ -41,6 +43,7 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
             [['geoname_id'], 'integer'],
             [['country_code'], 'in', 'range' => Country::codes()],
             [['division_code'], 'string', 'max' => 3],
+            [['language_codes'], 'string', 'max' => 255],
             [['name_en'], 'string', 'max' => 100],
             [['timezone_code'], 'in', 'range' => Timezone::codes()],
             [['latitude', 'longitude'], 'number'],
@@ -56,10 +59,10 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
-     * Get list of division codes by country code.
+     * Get list of division codes by a country code.
      *
-     * @param string $countryCode country code
-     * @return array list of division codes of country
+     * @param string $countryCode the country code
+     * @return array list of division codes of the country
      */
     public static function codes($countryCode)
     {
@@ -67,10 +70,10 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
-     * Get list of division names by country code.
+     * Get list of division names by a country code.
      *
-     * @param string $countryCode country code
-     * @return array list of division names of country
+     * @param string $countryCode the country code
+     * @return array list of division names of the country
      */
     public static function names($countryCode)
     {
@@ -84,6 +87,11 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
             ->column();
     }
 
+    /**
+     * Get the division code
+     *
+     * @return string
+     */
     public function getCode()
     {
         return $this->division_code;
@@ -95,6 +103,31 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
     public function getName()
     {
         return $this->translation ? $this->translation->value : $this->name_en;
+    }
+
+    /**
+     * Get list of language codes for the division
+     *
+     * @return string[]
+     */
+    public function getLanguageCodes()
+    {
+        return $this->language_codes ? explode(',', $this->language_codes) : [];
+    }
+
+    /**
+     * Get list of languages for the division.
+     *
+     * @return Language[]
+     */
+    public function getLanguages()
+    {
+        $list = [];
+        foreach ($this->languageCodes as $languageCode) {
+            $list[$languageCode] = Language::create($languageCode);
+        }
+
+        return $list;
     }
 
     /**
