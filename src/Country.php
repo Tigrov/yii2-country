@@ -154,7 +154,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
         $name = strtolower($name);
         $objectName = $name;
         $classMethod = 'create';
-        if (substr_compare($name, 'name', -4)) {
+        if (substr_compare($name, 'name', -4, 4, true)) {
             $objectName = substr($name, 0, -4);
             $classMethod = 'name';
         }
