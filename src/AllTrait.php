@@ -5,8 +5,6 @@ namespace tigrov\country;
 
 trait AllTrait
 {
-    use CreateTrait;
-
     /**
      * Get all models for the class
      *
