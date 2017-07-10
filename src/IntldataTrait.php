@@ -7,10 +7,10 @@ use yii\base\UnknownMethodException;
 /**
  * Trait IntldataTrait is a proxy to \tigrov\intldata static classes
  *
- * @method static string[] codes() list of codes
- * @method static bool has(string $code) a boolean indicating whether data has a code
- * @method static array names() list of names
- * @method static string name(string $code) name by code
+ * @method static string[] codes() Returns list of codes
+ * @method static bool has(string $code) Returns a boolean indicating whether data has a code
+ * @method static array names() Returns list of names
+ * @method static string name(string $code) Returns name by code
  */
 trait IntldataTrait
 {
