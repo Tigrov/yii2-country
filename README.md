@@ -48,6 +48,9 @@ The classes have access to static methods of [Tigrov/intldata](https://github.co
 // Get list of codes.
 ClassName::codes();
 
+// Get a boolean indicating whether data has a code.
+ClassName::has($code);
+
 // Get list of names.
 ClassName::names();
 
@@ -57,7 +60,8 @@ ClassName::name($code);
 // E.g.
 Country::names();
 Currency::name('USD');
-Timezone::codes();
+Locale::codes();
+Timezone::has('America/New_York');
 ```
 
 And some of the classes have additional static methods to get more information.
