@@ -4,6 +4,14 @@ namespace tigrov\country;
 
 use yii\base\UnknownMethodException;
 
+/**
+ * Trait IntldataTrait is a proxy to \tigrov\intldata static classes
+ *
+ * @method string[] codes() list of codes
+ * @method bool has(string $code) a boolean indicating whether data has a code
+ * @method array names() list of names
+ * @method string name(string $code) name by code
+ */
 trait IntldataTrait
 {
     public static function __callStatic($name, $arguments)
