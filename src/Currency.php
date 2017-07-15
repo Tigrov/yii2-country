@@ -17,6 +17,7 @@ use yii\base\Object;
  * @method static string|null findMainCode(string[] $codes) Find main currency code in a list
  * @method static string countryCurrencyCode(string $countryCode) Returns ISO 4217 currency code for a country
  * @method static string countryCurrencySymbol(string $countryCode) Returns currency symbol for a country
+ * @method static string currencySymbol(string $code) Returns currency symbol for a ISO 4217 currency code
  */
 class Currency extends Object implements ModelInterface
 {
