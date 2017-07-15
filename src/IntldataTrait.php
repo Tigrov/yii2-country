@@ -18,6 +18,17 @@ use yii\base\UnknownMethodException;
  */
 trait IntldataTrait
 {
+    /**
+     * @inheritdoc
+     */
+    public function __call($name, $arguments)
+    {
+        return static::__callStatic($name, $arguments);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function __callStatic($name, $arguments)
     {
         $className = static::intldataClassName();
