@@ -1,9 +1,20 @@
 <?php
+/**
+ * @link https://github.com/tigrov/yii2-country
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\country;
 
 use yii\base\Object;
 
+/**
+ * Class Region
+ * @package tigrov\country
+ *
+ * @method static array countryCodes(string $regionCode = null) Returns list of ISO 3166-1 alpha-2 country codes for a region
+ * @method static string countryRegionCode(string $countryCode) Returns UN region code for a country
+ */
 class Region extends Object implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;

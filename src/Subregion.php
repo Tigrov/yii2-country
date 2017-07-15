@@ -1,9 +1,23 @@
 <?php
+/**
+ * @link https://github.com/tigrov/yii2-country
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\country;
 
 use yii\base\Object;
 
+/**
+ * Class Subregion
+ * @package tigrov\country
+ *
+ * @method static string[] codes(string $regionCode = null) Returns list of UN sub-region codes for a region
+ * @method static array names(string $regionCode = null) String list of sub-region names for a region
+ * @method static string regionCode(string $subregionCode) Returns UN region code by a subregion
+ * @method static array countryCodes(string $subregionCode) Returns list of ISO 3166-1 alpha-2 country codes for a sub-region
+ * @method static string countrySubregionCode(string $countryCode) Returns UN sub-region code for a country
+ */
 class Subregion extends Object implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;

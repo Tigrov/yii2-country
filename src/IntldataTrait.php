@@ -1,4 +1,8 @@
 <?php
+/**
+ * @link https://github.com/tigrov/yii2-country
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\country;
 

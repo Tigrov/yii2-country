@@ -1,9 +1,24 @@
 <?php
+/**
+ * @link https://github.com/tigrov/yii2-country
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\country;
 
 use yii\base\Object;
 
+/**
+ * Class Language
+ * @package tigrov\country
+ *
+ * @method static string languageName(string $code) Returns name of a language in the language
+ * @method static array languageNames() Returns list of language names in the each language
+ * @method static string|null findMainCode(string[] $codes) Find main ISO 639-1 language code in a list
+ * @method static string[] countryLanguageCodes(string $countryCode) Returns list of country ISO 639-1 language codes
+ * @method static array countriesLanguageCode() Returns default lISO 639-1 anguage code for each country
+ * @method static string countryLanguageCode(string $countryCode) Returns default ISO 639-1 language code of a country
+ */
 class Language extends Object implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
