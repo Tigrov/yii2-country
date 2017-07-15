@@ -23,7 +23,11 @@ trait IntldataTrait
      */
     public function __call($name, $arguments)
     {
-        return static::__callStatic($name, $arguments);
+        try {
+            return parent::__call($name, $arguments);
+        } catch (\Exception $e) {
+            return static::__callStatic($name, $arguments);
+        }
     }
 
     /**
