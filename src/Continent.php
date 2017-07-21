@@ -12,7 +12,7 @@ use yii\base\Object;
  * Class Continent
  * @package tigrov\country
  *
- * @method static array countryCodes(string $code) Returns list of continent's ISO 3166-1 alpha-2 country codes
+ * @method static array countryCodes(string $code = null) Returns list of continent's ISO 3166-1 alpha-2 country codes
  * @method static string|null countryContinentCode(string $countryCode) Returns continent code by ISO 3166-1 alpha-2 country code
  */
 class Continent extends Object implements ModelInterface
