@@ -13,6 +13,7 @@ use yii\base\Object;
  * @package tigrov\country
  *
  * @method static string localeName(string $code) Returns name of a locale in the locale language
+ * @method static array localeNames(string[] $codes = null, bool $sort = true) Returns list of locale names in the each locale language
  * @method static string acceptCode(string $header = null) Tries to find out best available locale based on HTTP “Accept-Language” header
  * @method static string languageCode(string $localeCode) Returns ISO 639-1 or ISO 639-2 language code for a locale
  * @method static string[] languageLocaleCodes(string $languageCode) Returns list of language locale codes
