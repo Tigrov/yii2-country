@@ -13,7 +13,7 @@ use yii\base\UnknownMethodException;
  *
  * @method static string[] codes() Returns list of codes
  * @method static bool has(string $code) Returns a boolean indicating whether data has a code
- * @method static array names(string[] $codes = null) Returns list of names with code keys [code => name]
+ * @method static array names(string[] $codes = null, bool $sort = true) Returns list of names with code keys [code => name]
  * @method static string name(string $code) Returns name by code
  */
 trait IntldataTrait
