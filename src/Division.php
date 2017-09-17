@@ -70,7 +70,9 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function codes($countryCode)
     {
-        return static::find()->select(['division_code'])->where(['country_code' => $countryCode])->column();
+        return $countryCode
+            ? static::find()->select(['division_code'])->where(['country_code' => $countryCode])->column()
+            : [];
     }
 
     /**
@@ -81,14 +83,16 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function names($countryCode)
     {
-        return static::find()
-            ->select([new Expression('COALESCE(t.value, d.name_en) name'), 'd.division_code'])
+        return $countryCode
+            ? static::find()
+            ->select([new Expression('COALESCE(t.value, d.name_en) "name"'), 'd.division_code'])
             ->alias('d')
             ->joinWith(['translation t'])
-            ->where(['country_code' => $countryCode])
+            ->where(['d.country_code' => $countryCode])
             ->orderBy('name')
             ->indexBy('division_code')
-            ->column();
+            ->column()
+            : [];
     }
 
     /**
