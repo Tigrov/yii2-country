@@ -1,12 +1,15 @@
 .idea
 
-# composer vendor dir
+# composer
 /vendor
+/composer.lock
 
-# composer itself is not needed
-composer.phar
+# phpunit
+phpunit.phar
+/phpunit.xml
+/tests/runtime
+/tests/data/config.local.php
 
-# ungzipped files
-/migrations/data/city.csv
-/migrations/data/city_translation.csv
-/migrations/data/division_translation.csv
+# coveralls
+coveralls.phar
+/build
