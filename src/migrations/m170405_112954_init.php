@@ -62,6 +62,7 @@ class m170405_112954_init extends Migration
         }
 
         echo "    > load into $tableName from $csvFile ...";
+        flush();
         $time = microtime(true);
 
         $transaction = $this->db->beginTransaction();
@@ -90,6 +91,7 @@ class m170405_112954_init extends Migration
         } catch (\Exception $e) {
             echo " filed: " . $e->getMessage() . PHP_EOL;
             echo "    > trying batch insert ...\n";
+            flush();
 
             $transaction->rollBack();
             $csv = fopen($csvFile, 'r');
@@ -101,6 +103,8 @@ class m170405_112954_init extends Migration
                 }
 
                 $this->batchInsert($tableName, $columns, $rows);
+                echo "    > inserted " . count($rows) . " rows ...\n";
+                flush();
             } while ($row);
 
             fclose($csv);
