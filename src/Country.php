@@ -67,11 +67,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     private $_rinvex;
 
     /**
-     * @var array list of objects
-     */
-    private $_objects = [];
-
-    /**
      * @var Locale[] list of locales
      */
     private $_locales;

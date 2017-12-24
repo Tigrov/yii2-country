@@ -26,6 +26,12 @@ install:
 
 before_script:
   - sudo chmod a+rX /home /home/travis /home/travis/build /home/travis/build/Tigrov /home/travis/build/Tigrov/yii2-country
+  - |
+    if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
+      composer require rinvex/country ~2.0
+    else
+      composer require rinvex/country ~3.0
+    fi
 
 after_script:
   - |

@@ -18,6 +18,14 @@ class CountryTest extends TestCase
         $this->assertSame('China', Country::create('CN')->name);
     }
 
+    public function testAll()
+    {
+        $countries = Country::all();
+        $this->assertSame(250, count($countries));
+        $this->assertSame('Russia', $countries['RU']->name);
+        $this->assertSame('United States', $countries['US']->name);
+    }
+
     public function testContinentCode()
     {
         $this->assertSame('EU', Country::create('RU')->continentCode);
@@ -134,5 +142,11 @@ class CountryTest extends TestCase
     public function testIntldataClassName()
     {
         $this->assertSame('\\tigrov\\intldata\\Country', Country::intldataClassName());
+    }
+
+    public function testRinvex()
+    {
+        $this->assertSame('.ru', Country::create('RU')->rinvex->getTld());
+        $this->assertSame('.us', Country::create('US')->rinvex->getTld());
     }
 }
