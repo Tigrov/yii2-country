@@ -7,7 +7,6 @@ addons:
 language: php
 
 php:
-  - 5.6
   - 7.0
   - 7.1
 
@@ -23,15 +22,10 @@ install:
   - travis_retry composer self-update && composer --version
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
+  - travis_retry composer require rinvex/country ~3.0
 
 before_script:
   - sudo chmod a+rX /home /home/travis /home/travis/build /home/travis/build/Tigrov /home/travis/build/Tigrov/yii2-country
-  - |
-    if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
-      composer require rinvex/country ~2.0
-    else
-      composer require rinvex/country ~3.0
-    fi
 
 after_script:
   - |
