@@ -64,6 +64,7 @@ class m170405_112954_init extends Migration
         echo "    > load into $tableName from $csvFile ...";
         $time = microtime(true);
 
+        $transaction = $this->db->beginTransaction();
         try {
             switch ($this->db->driverName) {
                 case 'pgsql':
@@ -84,11 +85,13 @@ class m170405_112954_init extends Migration
                         ->execute();
             }
 
+            $transaction->commit();
             echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . "s)\n";
         } catch (\Exception $e) {
             echo " filed: " . $e->getMessage() . PHP_EOL;
             echo "    > trying batch insert ...\n";
 
+            $transaction->rollBack();
             $csv = fopen($csvFile, 'r');
 
             do {
