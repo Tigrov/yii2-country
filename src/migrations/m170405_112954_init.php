@@ -105,7 +105,7 @@ class m170405_112954_init extends Migration
                 }
 
                 $this->batchInsert($tableName, $columns, $rows);
-                echo "    > inserted " . count($rows) . " rows ...\n";
+                echo "    > inserted " . count($rows) . " rows\n";
                 ob_flush();
                 flush();
             } while ($row);
