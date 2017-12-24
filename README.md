@@ -3,6 +3,9 @@ Country data for Yii2
 
 The library provides access to Intl extension data for information about regions, sub-regions, countries, languages, locales, currencies and timezones. Also it has additional classes for information about continents, divisions, cities and measurement systems.
 
+[![Latest Stable Version](https://poser.pugx.org/Tigrov/yii2-country/v/stable)](https://packagist.org/packages/Tigrov/yii2-country)
+[![Build Status](https://travis-ci.org/Tigrov/yii2-country.svg?branch=master)](https://travis-ci.org/Tigrov/yii2-country)
+
 The main classes:
 - Continent
 - Region
@@ -24,13 +27,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist tigrov/yii2-country "*"
+php composer.phar require --prefer-dist tigrov/yii2-country
 ```
 
 or add
 
 ```
-"tigrov/yii2-country": "*"
+"tigrov/yii2-country": "~1.0"
 ```
 
 to the require section of your `composer.json` file.
