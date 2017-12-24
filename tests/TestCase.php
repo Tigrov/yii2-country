@@ -28,7 +28,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         if ($isMigrated === null) {
             $migrateController = new \yii\console\controllers\MigrateController('migrate', \Yii::$app);
             $migrateController->migrationPath = null;
-            $migrateController->migrationNamespaces[] = 'tigrov\country\migrations';
+            $migrateController->migrationNamespaces[] = 'tigrov\tests\unit\country\migrations';
             try {
                 $migrateController->runAction('down', ['interactive' => 0]);
             } catch (\Exception $e) {}
