@@ -13,3 +13,8 @@ phpunit.phar
 # coveralls
 coveralls.phar
 /build
+
+# ungzipped files
+/src/migrations/data/city.csv
+/src/migrations/data/city_translation.csv
+/src/migrations/data/division_translation.csv

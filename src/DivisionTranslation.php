@@ -35,7 +35,7 @@ class DivisionTranslation extends \yii\db\ActiveRecord
             [['country_code'], 'in', 'range' => Country::codes()],
             [['division_code'], 'string', 'max' => 3],
             [['language_code'], 'string', 'max' => 25],
-            [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::class, 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
+            [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::className(), 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
         ];
     }
 

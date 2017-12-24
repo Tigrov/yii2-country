@@ -62,20 +62,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     use IntldataTrait, CreateActiveRecordTrait;
 
     /**
-     * Objects' classes
-     */
-    const OBJECT_CLASSES = [
-        'continent' => Continent::class,
-        'region' => Region::class,
-        'subregion' => Subregion::class,
-        'measurementsystem' => MeasurementSystem::class,
-        'language' => Language::class,
-        'locale' => Locale::class,
-        'currency' => Currency::class,
-        'timezone' => Timezone::class,
-    ];
-
-    /**
      * @var \Rinvex\Country\Country
      */
     private $_rinvex;
@@ -151,6 +137,23 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
+     * Objects' classes
+     * @return array
+     */
+    protected static function objectsClasses() {
+        return [
+            'continent' => Continent::className(),
+            'region' => Region::className(),
+            'subregion' => Subregion::className(),
+            'measurementsystem' => MeasurementSystem::className(),
+            'language' => Language::className(),
+            'locale' => Locale::className(),
+            'currency' => Currency::className(),
+            'timezone' => Timezone::className(),
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function __get($name)
@@ -162,9 +165,10 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
             $objectName = substr($name, 0, -4);
             $classMethod = 'name';
         }
-        if (isset(static::OBJECT_CLASSES[$objectName])) {
+        $objectsClasses = static::objectsClasses();
+        if (isset($objectsClasses[$objectName])) {
             $codeGetter = 'get' . $objectName . 'Code';
-            $className = static::OBJECT_CLASSES[$objectName];
+            $className = $objectsClasses[$objectName];
 
             return $className::$classMethod($this->$codeGetter());
         }
@@ -209,7 +213,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getSubregionCode()
     {
-        return Region::countrySubregionCode($this->code);
+        return Subregion::countrySubregionCode($this->code);
     }
 
     /**
@@ -337,7 +341,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getDivisions()
     {
-        return $this->hasMany(Division::class, ['country_code' => 'code']);
+        return $this->hasMany(Division::className(), ['country_code' => 'code'])->indexBy('division_code');
     }
 
     /**
@@ -345,7 +349,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getCities()
     {
-        return $this->hasMany(City::class, ['country_code' => 'code']);
+        return $this->hasMany(City::className(), ['country_code' => 'code'])->indexBy('geoname_id');
     }
 
     /**

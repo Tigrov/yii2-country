@@ -40,12 +40,12 @@ trait IntldataTrait
         if (method_exists($className, $name)) {
             return forward_static_call_array([$className, $name], $arguments);
         } else {
-            throw new UnknownMethodException('Unknown static method ' . static::class . '::' . $name);
+            throw new UnknownMethodException('Unknown static method ' . static::className() . '::' . $name);
         }
     }
 
     public static function intldataClassName()
     {
-        return '\\tigrov\\intldata\\' . substr(strrchr(self::class, '\\'), 1);
+        return '\\tigrov\\intldata\\' . (new \ReflectionClass(self::className()))->getShortName();
     }
 }

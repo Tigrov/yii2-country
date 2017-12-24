@@ -47,7 +47,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
             [['name_en'], 'string', 'max' => 200],
             [['timezone_code'], 'in', 'range' => Timezone::codes()],
             [['latitude', 'longitude'], 'number'],
-            [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::class, 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
+            [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::className(), 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
         ];
     }
 
@@ -91,7 +91,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
         }
 
         return static::find()
-            ->select([new Expression('COALESCE(t.value, c.name_en) name'), 'c.geoname_id'])
+            ->select([new Expression('COALESCE(t.value, c.name_en) AS name'), 'c.geoname_id'])
             ->alias('c')
             ->joinWith(['translation t'])
             ->where($where)
@@ -118,7 +118,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getDivision()
     {
-        return $this->hasOne(Division::class, ['country_code' => 'country_code', 'division_code' => 'division_code']);
+        return $this->hasOne(Division::className(), ['country_code' => 'country_code', 'division_code' => 'division_code']);
     }
 
     /**
@@ -126,7 +126,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::class, ['code' => 'country_code']);
+        return $this->hasOne(Country::className(), ['code' => 'country_code']);
     }
 
     /**
@@ -150,7 +150,8 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getTranslations()
     {
-        return $this->hasMany(CityTranslation::class, ['geoname_id' => 'geoname_id']);
+        return $this->hasMany(CityTranslation::className(), ['geoname_id' => 'geoname_id'])
+            ->indexBy('language_code');
     }
 
     /**
@@ -158,7 +159,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getTranslation()
     {
-        return $this->hasOne(CityTranslation::class, ['geoname_id' => 'geoname_id'])
+        return $this->hasOne(CityTranslation::className(), ['geoname_id' => 'geoname_id'])
             ->andOnCondition(['language_code' => Locale::languageCode(\Yii::$app->language)]);
     }
 }
