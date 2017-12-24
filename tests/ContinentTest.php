@@ -18,6 +18,15 @@ class ContinentTest extends TestCase
         $this->assertSame('Asia', Continent::create('AS')->name);
     }
 
+    public function testAll()
+    {
+        $continents = Continent::all();
+        $this->assertSame(7, count($continents));
+        $this->assertSame('Europe', $continents['EU']->name);
+        $this->assertSame('North america', $continents['NA']->name);
+        $this->assertSame('Asia', $continents['AS']->name);
+    }
+
     public function testCountryCodes()
     {
         $this->assertEquals([

@@ -18,6 +18,14 @@ class RegionTest extends TestCase
         $this->assertSame('Asia', Region::create('142')->name);
     }
 
+    public function testAll()
+    {
+        $regions = Region::all();
+        $this->assertSame('Europe', $regions['150']->name);
+        $this->assertSame('Americas', $regions['019']->name);
+        $this->assertSame('Asia', $regions['142']->name);
+    }
+
     public function testSubregionCodes()
     {
         $this->assertEquals(['154','039','155','151'], Region::create('150')->subregionCodes);

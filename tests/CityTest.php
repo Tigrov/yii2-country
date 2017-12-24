@@ -47,6 +47,13 @@ class CityTest extends TestCase
         $this->assertSame('Los Angeles', City::create(5368361)->name);
     }
 
+    public function testAll()
+    {
+        $cities = City::all();
+        $this->assertSame('Moscow', $cities[524901]->name);
+        $this->assertSame('Los Angeles', $cities[5368361]->name);
+    }
+
     public function testDivision()
     {
         $this->assertSame('CA', City::create(5368361)->division_code);

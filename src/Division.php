@@ -59,7 +59,10 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function all()
     {
-        return static::find()->with('translation')->all();
+        return static::find()
+            ->with('translation')
+            ->indexBy(function($row){return$row['country_code'].'-'.$row['division_code'];})
+            ->all();
     }
 
     /**

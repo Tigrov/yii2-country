@@ -17,6 +17,13 @@ class MeasurementSystemTest extends TestCase
         $this->assertSame('United States (inch, pound)', MeasurementSystem::create('US')->name);
     }
 
+    public function testAll()
+    {
+        $measurementSystems = MeasurementSystem::all();
+        $this->assertSame('International System (metre, kilogram)', $measurementSystems['SI']->name);
+        $this->assertSame('United States (inch, pound)', $measurementSystems['US']->name);
+    }
+
     public function testIntldataClassName()
     {
         $this->assertSame('\\tigrov\\intldata\\MeasurementSystem', MeasurementSystem::intldataClassName());

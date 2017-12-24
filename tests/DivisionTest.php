@@ -29,6 +29,13 @@ class DivisionTest extends TestCase
         $this->assertSame('New York', Division::create(['country_code' => 'US', 'division_code' => 'NY'])->name);
     }
 
+    public function testAll()
+    {
+        $divisions = Division::all();
+        $this->assertSame('California', $divisions['US-CA']->name);
+        $this->assertSame('New York', $divisions['US-NY']->name);
+    }
+
     public function testLanguageCodes()
     {
         $languageCodes = Division::create(['country_code' => 'US', 'division_code' => 'NM'])->languageCodes;

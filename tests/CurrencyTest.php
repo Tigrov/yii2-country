@@ -18,6 +18,14 @@ class CurrencyTest extends TestCase
         $this->assertSame('Chinese Yuan', Currency::create('CNY')->name);
     }
 
+    public function testAll()
+    {
+        $currencies = Currency::all();
+        $this->assertSame('Russian Ruble', $currencies['RUB']->name);
+        $this->assertSame('US Dollar', $currencies['USD']->name);
+        $this->assertSame('Chinese Yuan', $currencies['CNY']->name);
+    }
+
     public function testIntldataClassName()
     {
         $this->assertSame('\\tigrov\\intldata\\Currency', Currency::intldataClassName());

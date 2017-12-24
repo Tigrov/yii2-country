@@ -17,6 +17,13 @@ class LocaleTest extends TestCase
         $this->assertSame('English (United States)', Locale::create('en_US')->name);
     }
 
+    public function testAll()
+    {
+        $locales = Locale::all();
+        $this->assertSame('Russian (Russia)', $locales['ru_RU']->name);
+        $this->assertSame('English (United States)', $locales['en_US']->name);
+    }
+
     public function testLanguageCode()
     {
         $this->assertSame('en', Locale::create('en_US')->languageCode);

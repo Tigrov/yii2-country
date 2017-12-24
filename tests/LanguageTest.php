@@ -18,6 +18,14 @@ class LanguageTest extends TestCase
         $this->assertSame('Chinese', Language::create('zh')->name);
     }
 
+    public function testAll()
+    {
+        $languages = Language::all();
+        $this->assertSame('Russian', $languages['ru']->name);
+        $this->assertSame('English', $languages['en']->name);
+        $this->assertSame('Chinese', $languages['zh']->name);
+    }
+
     public function testLocaleCodes()
     {
         $localeCodes = Language::create('en')->localeCodes;

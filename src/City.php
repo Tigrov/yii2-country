@@ -56,7 +56,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function all()
     {
-        return static::find()->with('translation')->indexBy(['geoname_id'])->all();
+        return static::find()->with('translation')->indexBy('geoname_id')->all();
     }
 
     /**

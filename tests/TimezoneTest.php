@@ -17,6 +17,13 @@ class TimezoneTest extends TestCase
         $this->assertSame('(GMT+8) China Time', Timezone::create('Asia/Shanghai')->name);
     }
 
+    public function testAll()
+    {
+        $timezones = Timezone::all();
+        $this->assertSame('(EST) New York Time', $timezones['America/New_York']->name);
+        $this->assertSame('(GMT+8) China Time', $timezones['Asia/Shanghai']->name);
+    }
+
     public function testIntldataClassName()
     {
         $this->assertSame('\\tigrov\\intldata\\Timezone', Timezone::intldataClassName());
