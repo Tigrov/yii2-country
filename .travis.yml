@@ -26,7 +26,6 @@ install:
 
 before_script:
   - sudo chmod a+rX /home /home/travis /home/travis/build /home/travis/build/Tigrov /home/travis/build/Tigrov/yii2-country
-  - chmod a+rX src src/migrations src/migrations/data src/migrations/data/*
 
 after_script:
   - |
