@@ -25,8 +25,7 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
 before_script:
-  - chmod +rx src/migrations/data
-  - chmod +r src/migrations/data/*
+  - chmod a+rX src src/migrations src/migrations/data src/migrations/data/*
 
 after_script:
   - |

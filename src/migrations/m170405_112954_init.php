@@ -97,7 +97,7 @@ class m170405_112954_init extends Migration
             do {
                 $rows = [];
                 for ($i = 0; ($row = fgetcsv($csv, 1024, static::CSV_DELIMITER)) && $i < static::INSERT_ROWS; ++$i) {
-                    $rows[] = $row;
+                    $rows[] = array_map(function($v){return$v?:null;}, $row);
                 }
 
                 $this->batchInsert($tableName, $columns, $rows);
