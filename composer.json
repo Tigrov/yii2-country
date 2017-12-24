@@ -17,6 +17,12 @@
         "yiisoft/yii2": "~2.0.0",
         "tigrov/intldata": "~1.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "suggest": {
         "rinvex/country": "Allows access to additional data of countries"
     },
