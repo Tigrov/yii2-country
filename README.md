@@ -96,7 +96,7 @@ $europe->countries;
 
 $us = Country::create('US');
 $us->code; // 'US'
-$us->name; // 'United States' (depends of current locale)
+$us->name; // 'United States' (depends of the current locale)
 
 // List of divisions (states)
 $us->divisions;
