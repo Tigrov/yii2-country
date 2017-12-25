@@ -33,11 +33,25 @@ class CountryTest extends TestCase
         $this->assertSame('AS', Country::create('CN')->continentCode);
     }
 
+    public function testContinentName()
+    {
+        $this->assertSame('Europe', Country::create('RU')->continentName);
+        $this->assertSame('North america', Country::create('US')->continentName);
+        $this->assertSame('Asia', Country::create('CN')->continentName);
+    }
+
     public function testRegionCode()
     {
         $this->assertEquals('150', Country::create('RU')->regionCode);
         $this->assertEquals('019', Country::create('US')->regionCode);
         $this->assertEquals('142', Country::create('CN')->regionCode);
+    }
+
+    public function testRegionName()
+    {
+        $this->assertEquals('Europe', Country::create('RU')->regionName);
+        $this->assertEquals('Americas', Country::create('US')->regionName);
+        $this->assertEquals('Asia', Country::create('CN')->regionName);
     }
 
     public function testSubregionCode()
@@ -47,11 +61,25 @@ class CountryTest extends TestCase
         $this->assertEquals('030', Country::create('CN')->subregionCode);
     }
 
+    public function testSubregionName()
+    {
+        $this->assertEquals('Eastern Europe', Country::create('RU')->subregionName);
+        $this->assertEquals('Northern America', Country::create('US')->subregionName);
+        $this->assertEquals('Eastern Asia', Country::create('CN')->subregionName);
+    }
+
     public function getMeasurementSystemCode()
     {
         $this->assertSame('SI', Country::create('RU')->measurementSystemCode);
         $this->assertSame('US', Country::create('US')->measurementSystemCode);
         $this->assertSame('SI', Country::create('CN')->measurementSystemCode);
+    }
+
+    public function getMeasurementSystemName()
+    {
+        $this->assertSame('International System (metre, kilogram)', Country::create('RU')->measurementSystemName);
+        $this->assertSame('United States (inch, pound)', Country::create('US')->measurementSystemName);
+        $this->assertSame('International System (metre, kilogram)', Country::create('CN')->measurementSystemName);
     }
 
     public function testLocaleCodes()
@@ -96,12 +124,24 @@ class CountryTest extends TestCase
         $this->assertSame('en_US', Country::create('US')->localeCode);
     }
 
+    public function testLocaleName()
+    {
+        $this->assertSame('Russian (Russia)', Country::create('RU')->localeName);
+        $this->assertSame('English (United States)', Country::create('US')->localeName);
+    }
+
     public function testLanguageCode()
     {
         $this->assertSame('ru', Country::create('RU')->languageCode);
         $this->assertSame('ru', Country::create('RU')->language_code);
         $this->assertSame('en', Country::create('US')->languageCode);
         $this->assertSame('en', Country::create('US')->language_code);
+    }
+
+    public function testLanguageName()
+    {
+        $this->assertSame('Russian', Country::create('RU')->languageName);
+        $this->assertSame('English', Country::create('US')->languageName);
     }
 
     public function testCurrencyCode()
@@ -112,12 +152,24 @@ class CountryTest extends TestCase
         $this->assertSame('USD', Country::create('US')->currency_code);
     }
 
+    public function testCurrencyName()
+    {
+        $this->assertSame('Russian Ruble', Country::create('RU')->currencyName);
+        $this->assertSame('US Dollar', Country::create('US')->currencyName);
+    }
+
     public function testTimezoneCode()
     {
         $this->assertSame('Europe/Moscow', Country::create('RU')->timezoneCode);
         $this->assertSame('Europe/Moscow', Country::create('RU')->timezone_code);
         $this->assertSame('America/New_York', Country::create('US')->timezoneCode);
         $this->assertSame('America/New_York', Country::create('US')->timezone_code);
+    }
+
+    public function testTimezoneName()
+    {
+        $this->assertSame('(EST) New York Time', Country::create('US')->timezoneName);
+        $this->assertSame('(GMT+8) China Time', Country::create('CN')->timezoneName);
     }
 
     public function testDivisions()

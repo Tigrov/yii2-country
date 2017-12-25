@@ -118,11 +118,10 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function __get($name)
     {
-        $name = strtolower($name);
-        $objectName = $name;
+        $objectName = strtolower($name);
         $classMethod = 'create';
-        if (0 === substr_compare($name, 'name', -4, 4, true)) {
-            $objectName = substr($name, 0, -4);
+        if (0 === substr_compare($objectName, 'name', -4, 4, true)) {
+            $objectName = substr($objectName, 0, -4);
             $classMethod = 'name';
         }
         $objectsClasses = static::objectsClasses();
