@@ -96,7 +96,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
             [['code'], 'in', 'range' => static::codes()],
             [['language_code'], 'string', 'max' => 3],
             [['currency_code'], 'in', 'range' => Currency::codes()],
-            [['timezone_code'], 'in', 'range' => function($model, $attribute) { return Timezone::codes($model->code); }],
+            [['timezone_code'], 'in', 'range' => function ($model, $attribute) { return Timezone::codes($model->code); }],
             [['name_en'], 'string', 'max' => 100],
         ];
     }

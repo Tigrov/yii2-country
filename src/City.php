@@ -45,7 +45,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
             [['country_code'], 'in', 'range' => Country::codes()],
             [['division_code'], 'string', 'max' => 3],
             [['name_en'], 'string', 'max' => 200],
-            [['timezone_code'], 'in', 'range' => Timezone::codes()],
+            [['timezone_code'], 'in', 'range' => function ($model, $attribute) { return Timezone::codes($model->country_code); }],
             [['latitude', 'longitude'], 'number'],
             [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::className(), 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
         ];
