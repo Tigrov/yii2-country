@@ -22,29 +22,4 @@ class CityTranslation extends \yii\db\ActiveRecord
     {
         return 'city_translation';
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['geoname_id', 'language_code', 'value'], 'required'],
-            [['geoname_id'], 'integer'],
-            [['value'], 'string'],
-            [['language_code'], 'string', 'max' => 25],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'geoname_id' => 'GeonameID',
-            'language_code' => 'Language',
-            'value' => 'Value',
-        ];
-    }
 }

@@ -40,23 +40,6 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['country_code', 'name_en'], 'required'],
-            [['geoname_id'], 'integer'],
-            [['country_code'], 'in', 'range' => Country::codes()],
-            [['division_code'], 'string', 'max' => 3],
-            [['language_codes'], 'string', 'max' => 255],
-            [['name_en'], 'string', 'max' => 100],
-            [['timezone_code'], 'in', 'range' => function ($model, $attribute) { return Timezone::codes($model->country_code); }],
-            [['latitude', 'longitude'], 'number'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public static function all()
     {
         return static::find()

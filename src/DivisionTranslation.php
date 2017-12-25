@@ -23,32 +23,4 @@ class DivisionTranslation extends \yii\db\ActiveRecord
     {
         return 'division_translation';
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['country_code', 'division_code', 'language_code', 'value'], 'required'],
-            [['value'], 'string'],
-            [['country_code'], 'in', 'range' => Country::codes()],
-            [['division_code'], 'string', 'max' => 3],
-            [['language_code'], 'string', 'max' => 25],
-            [['country_code', 'division_code'], 'exist', 'skipOnError' => true, 'targetClass' => Division::className(), 'targetAttribute' => ['country_code' => 'country_code', 'division_code' => 'division_code']],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'country_code' => 'Country',
-            'division_code' => 'Division',
-            'language_code' => 'Language',
-            'value' => 'Value',
-        ];
-    }
 }

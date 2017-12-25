@@ -85,41 +85,6 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['code', 'geoname_id', 'capital_geoname_id', 'language_code', 'currency_code', 'timezone_code', 'latitude', 'longitude', 'name_en'], 'required'],
-            [['geoname_id', 'capital_geoname_id'], 'integer'],
-            [['latitude', 'longitude'], 'number'],
-            [['code'], 'in', 'range' => static::codes()],
-            [['language_code'], 'string', 'max' => 3],
-            [['currency_code'], 'in', 'range' => Currency::codes()],
-            [['timezone_code'], 'in', 'range' => function ($model, $attribute) { return Timezone::codes($model->code); }],
-            [['name_en'], 'string', 'max' => 100],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'code' => 'Code',
-            'geoname_id' => 'Geoname ID',
-            'capital_geoname_id' => 'Capital ID',
-            'language_code' => 'Language',
-            'currency_code' => 'Currency',
-            'timezone_code' => 'Timezone',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
-            'name_en' => 'Name',
-        ];
-    }
-
-    /**
      * @return \Rinvex\Country\Country
      */
     public function getRinvex()
