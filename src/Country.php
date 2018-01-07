@@ -318,4 +318,16 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
     {
         return City::create($this->capital_geoname_id);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function extraFields()
+    {
+        $fields = ['name', 'continentCode', 'continentName', 'regionCode', 'regionName', 'subregionCode', 'subregionName',
+            'measurementSystemCode', 'measurementSystemName', 'localeCodes', 'localeNames', 'languageCodes',
+            'languageNames', 'localeCode', 'localeName', 'languageCode', 'languageName', 'currencyCode', 'currencyName',
+            'timezoneCode', 'timezoneName'];
+        return array_merge(parent::extraFields(), array_combine($fields, $fields));
+    }
 }

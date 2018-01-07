@@ -18,7 +18,9 @@ use yii\db\Expression;
  * @property string $timezone_code
  *
  * @property Country $country
+ * @property string $countryName
  * @property Division $division
+ * @property string $divisionName
  * @property Timezone $timezone
  * @property string $timezoneName
  */
@@ -99,17 +101,33 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::className(), ['code' => 'country_code']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->country->name;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getDivision()
     {
         return $this->hasOne(Division::className(), ['country_code' => 'country_code', 'division_code' => 'division_code']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return string
      */
-    public function getCountry()
+    public function getDivisionName()
     {
-        return $this->hasOne(Country::className(), ['code' => 'country_code']);
+        return $this->division ? $this->division->name : null;
     }
 
     /**
@@ -144,5 +162,14 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
     {
         return $this->hasOne(CityTranslation::className(), ['geoname_id' => 'geoname_id'])
             ->andOnCondition(['language_code' => Locale::languageCode(\Yii::$app->language)]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function extraFields()
+    {
+        $fields = ['code', 'name', 'divisionName', 'countryName', 'timezoneName'];
+        return array_merge(parent::extraFields(), array_combine($fields, $fields));
     }
 }

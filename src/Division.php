@@ -9,7 +9,7 @@ namespace tigrov\country;
 use yii\db\Expression;
 
 /**
- * This is the model class for table "region".
+ * This is the model class for table "division".
  *
  * @property integer $geoname_id
  * @property string $country_code
@@ -18,10 +18,13 @@ use yii\db\Expression;
  * @property string $name_en
  * @property string $timezone_code
  *
- * @property string $name local name of the region
+ * @property string $code the division code
+ * @property string $name local name of the division
+ * @property string[] $languageCodes
  * @property Language[] $languages
  * @property City[] $cities
  * @property Country $country
+ * @property string $countryName
  * @property Timezone $timezone
  * @property string $timezoneName
  */
@@ -142,6 +145,14 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
     }
 
     /**
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->country->name;
+    }
+
+    /**
      * @return Timezone
      */
     public function getTimezone()
@@ -175,5 +186,14 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
         return $this
             ->hasOne(DivisionTranslation::className(), ['country_code' => 'country_code', 'division_code' => 'division_code'])
             ->andOnCondition(['language_code' => Locale::languageCode(\Yii::$app->language)]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function extraFields()
+    {
+        $fields = ['code', 'name', 'languageCodes', 'countryName', 'timezoneName'];
+        return array_merge(parent::extraFields(), array_combine($fields, $fields));
     }
 }
