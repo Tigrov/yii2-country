@@ -12,6 +12,7 @@ use yii\base\Object;
  * Class Language
  * @package tigrov\country
  *
+ * @method static string[] mainCodes() Returns list of main ISO 639-1 language codes
  * @method static string languageName(string $code) Returns name of a language in the language
  * @method static array languageNames(string[] $codes = null, bool $sort = true) Returns list of language names in the each language
  * @method static string|null findMainCode(string[] $codes) Find main ISO 639-1 language code in a list
