@@ -36,6 +36,6 @@ before_script:
 after_script:
   - |
     if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
-      travis_retry wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
-      php coveralls.phar -v
+      travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
+      php php-coveralls.phar -v
     fi
