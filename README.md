@@ -22,7 +22,7 @@ The main classes:
 Limitation
 ------------
 
-Since 1.1.0 requires Yii 2.0.13 and above.
+Since 1.1.0 requires Yii >= 2.0.13 and PHP >= 5.5
 
 Installation
 ------------
