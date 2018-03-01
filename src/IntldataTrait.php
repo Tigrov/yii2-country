@@ -46,6 +46,6 @@ trait IntldataTrait
 
     public static function intldataClassName()
     {
-        return '\\tigrov\\intldata\\' . (new \ReflectionClass(self::className()))->getShortName();
+        return '\\tigrov\\intldata\\' . (new \ReflectionClass(self::class))->getShortName();
     }
 }

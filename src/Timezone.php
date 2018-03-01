@@ -6,7 +6,7 @@
 
 namespace tigrov\country;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class Timezone
@@ -18,7 +18,7 @@ use yii\base\Object;
  * @method static array countriesTimezoneCode() Returns default timezone code for each country
  * @method static string countryTimezoneCode(string $countryCode) Returns default timezone code of a country
  */
-class Timezone extends Object implements ModelInterface
+class Timezone extends BaseObject implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
 

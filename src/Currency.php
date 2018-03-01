@@ -6,7 +6,7 @@
 
 namespace tigrov\country;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class Currency
@@ -19,7 +19,7 @@ use yii\base\Object;
  * @method static string countryCurrencySymbol(string $countryCode) Returns currency symbol for a country
  * @method static string currencySymbol(string $code) Returns currency symbol for a ISO 4217 currency code
  */
-class Currency extends Object implements ModelInterface
+class Currency extends BaseObject implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
 

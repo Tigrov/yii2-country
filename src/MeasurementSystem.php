@@ -6,7 +6,7 @@
 
 namespace tigrov\country;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class MeasurementSystem
@@ -14,7 +14,7 @@ use yii\base\Object;
  *
  * @method static string countryMeasurementSystemCode(string $countryCode) Returns measurement system code for a country
  */
-class MeasurementSystem extends Object implements ModelInterface
+class MeasurementSystem extends BaseObject implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
 

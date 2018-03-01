@@ -6,7 +6,7 @@
 
 namespace tigrov\country;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class Locale
@@ -24,7 +24,7 @@ use yii\base\Object;
  * @method static string|null countryLocaleCode(string $countryCode) Tries to find locale code for a country
  * @method static string languageCountryLocaleCode(string $languageCode, string $countryCode) Returns locale code (using RFC 4646 language tags) for a language and a country
  */
-class Locale extends Object implements ModelInterface
+class Locale extends BaseObject implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
 

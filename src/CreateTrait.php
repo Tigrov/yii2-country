@@ -16,6 +16,6 @@ trait CreateTrait
      */
     public static function create($code)
     {
-        return \Yii::createObject(['class' => static::className(), 'code' => $code]);
+        return \Yii::createObject(['class' => static::class, 'code' => $code]);
     }
 }

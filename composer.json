@@ -14,7 +14,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.0",
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "~2.0.13",
         "tigrov/intldata": "~1.0"
     },
     "repositories": [

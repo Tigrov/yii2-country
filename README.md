@@ -19,6 +19,11 @@ The main classes:
 - Timezone
 - MeasurementSystem
 
+Limitation
+------------
+
+Since 1.1.0 requires Yii 2.0.13 and above.
+
 Installation
 ------------
 

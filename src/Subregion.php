@@ -6,7 +6,7 @@
 
 namespace tigrov\country;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class Subregion
@@ -18,7 +18,7 @@ use yii\base\Object;
  * @method static array countryCodes(string $subregionCode) Returns list of ISO 3166-1 alpha-2 country codes for a sub-region
  * @method static string countrySubregionCode(string $countryCode) Returns UN sub-region code for a country
  */
-class Subregion extends Object implements ModelInterface
+class Subregion extends BaseObject implements ModelInterface
 {
     use IntldataTrait, CreateTrait, AllTrait;
 

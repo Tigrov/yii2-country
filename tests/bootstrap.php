@@ -15,3 +15,5 @@ Yii::setAlias('@tigrov/tests/unit/country', __DIR__);
 Yii::setAlias('@tigrov/country', dirname(__DIR__) . '/src');
 
 require_once(__DIR__ . '/compatibility.php');
+
+\Locale::setDefault('en_US');

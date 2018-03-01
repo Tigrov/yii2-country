@@ -102,14 +102,14 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     protected static function objectsClasses() {
         return [
-            'continent' => Continent::className(),
-            'region' => Region::className(),
-            'subregion' => Subregion::className(),
-            'measurementsystem' => MeasurementSystem::className(),
-            'language' => Language::className(),
-            'locale' => Locale::className(),
-            'currency' => Currency::className(),
-            'timezone' => Timezone::className(),
+            'continent' => Continent::class,
+            'region' => Region::class,
+            'subregion' => Subregion::class,
+            'measurementsystem' => MeasurementSystem::class,
+            'language' => Language::class,
+            'locale' => Locale::class,
+            'currency' => Currency::class,
+            'timezone' => Timezone::class,
         ];
     }
 
@@ -300,7 +300,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getDivisions()
     {
-        return $this->hasMany(Division::className(), ['country_code' => 'code'])->indexBy('division_code');
+        return $this->hasMany(Division::class, ['country_code' => 'code'])->indexBy('division_code');
     }
 
     /**
@@ -308,7 +308,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public function getCities()
     {
-        return $this->hasMany(City::className(), ['country_code' => 'code'])->indexBy('geoname_id');
+        return $this->hasMany(City::class, ['country_code' => 'code'])->indexBy('geoname_id');
     }
 
     /**
