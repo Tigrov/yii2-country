@@ -65,7 +65,6 @@ class m170405_112954_init extends Migration
         flush();
         $time = microtime(true);
 
-        $transaction = $this->db->beginTransaction();
         try {
             switch ($this->db->driverName) {
                 case 'pgsql':
@@ -85,17 +84,13 @@ class m170405_112954_init extends Migration
                         ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"'")
                         ->execute();
             }
-
-            $transaction->commit();
             echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . "s)\n";
         } catch (\Exception $e) {
             echo " filed: " . $e->getMessage() . PHP_EOL;
             echo "    > trying batch insert ...\n";
             flush();
 
-            $transaction->rollBack();
             $csv = fopen($csvFile, 'r');
-
             do {
                 $rows = [];
                 for ($i = 0; ($row = fgetcsv($csv, 1024, static::CSV_DELIMITER)) && $i < static::INSERT_ROWS; ++$i) {
