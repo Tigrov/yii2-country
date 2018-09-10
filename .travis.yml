@@ -19,7 +19,7 @@ sudo: false
 # cache vendor dirs
 cache:
   directories:
-    - $HOME/.composer/vendor
+    - vendor
     - $HOME/.composer/cache
 
 install:
@@ -30,8 +30,8 @@ install:
 
 before_script:
   - sudo chmod a+rX /home /home/travis /home/travis/build /home/travis/build/Tigrov /home/travis/build/Tigrov/yii2-country
-  - mysql -e 'CREATE DATABASE `yiitest`;';
-  - psql -U postgres -c 'CREATE DATABASE yiitest;';
+  - mysql -e 'CREATE DATABASE `yiitest`;'
+  - psql -U postgres -c 'CREATE DATABASE yiitest;'
   - |
     if [ $TRAVIS_PHP_VERSION != '5.6' ]; then
       travis_retry composer require rinvex/country ~3.0
@@ -39,7 +39,7 @@ before_script:
 
 script:
   - phpunit
-  - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root",],],];' >> 'tests/data/config.local.php'
+  - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root",],],];' >> '/home/travis/build/Tigrov/yii2-country/tests/data/config.local.php'
   - phpunit
 
 after_script:
