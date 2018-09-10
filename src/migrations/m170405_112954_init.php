@@ -61,7 +61,7 @@ class m170405_112954_init extends Migration
             $csvFile = static::ungzip($csvFile);
         }
 
-        echo "    > load into $tableName from $csvFile ...";
+        echo '    > load into ' . $tableName . ' from ' . $csvFile . ' ...';
         flush();
         $time = microtime(true);
 
@@ -84,10 +84,10 @@ class m170405_112954_init extends Migration
                         ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"'")
                         ->execute();
             }
-            echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . "s)\n";
+            echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . 's)' . PHP_EOL;
         } catch (\Exception $e) {
-            echo " filed: " . $e->getMessage() . PHP_EOL;
-            echo "    > trying batch insert ...\n";
+            echo ' filed: ' . $e->getMessage() . PHP_EOL;
+            echo '    > trying batch insert ...' . PHP_EOL;
             flush();
 
             $csv = fopen($csvFile, 'r');
@@ -98,7 +98,7 @@ class m170405_112954_init extends Migration
                 }
 
                 $this->batchInsert($tableName, $columns, $rows);
-                echo "    > inserted " . count($rows) . " rows\n";
+                echo '    > inserted ' . count($rows) . ' rows' . PHP_EOL;
                 flush();
             } while ($row);
 
