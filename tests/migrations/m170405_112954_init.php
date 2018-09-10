@@ -10,11 +10,4 @@ class m170405_112954_init extends \tigrov\country\migrations\m170405_112954_init
     const DIVISION_TRANSLATION_CSV = self::DATA_DIR . 'division_translation.csv';
     const CITY_CSV = self::DATA_DIR . 'city.csv';
     const CITY_TRANSLATION_CSV = self::DATA_DIR . 'city_translation.csv';
-
-    public function safeUp()
-    {
-        echo $this->db->driverName . PHP_EOL;;
-
-        parent::safeUp();
-    }
 }
