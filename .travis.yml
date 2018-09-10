@@ -19,6 +19,7 @@ sudo: false
 # cache vendor dirs
 cache:
   directories:
+    - vendor
     - $HOME/.composer/cache
 
 install:
@@ -37,9 +38,9 @@ before_script:
     fi
 
 script:
-  - vendor/bin/phpunit
+  - phpunit
   - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root",],],];' >> 'tests/data/config.local.php'
-  - vendor/bin/phpunit
+  - phpunit
 
 after_script:
   - |
