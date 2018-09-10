@@ -38,7 +38,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit --verbose
-  echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest', 'username' => 'root',],],];' >> 'tests/data/config.local.php'
+  - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root",],],];' >> 'tests/data/config.local.php'
   - vendor/bin/phpunit --verbose
 
 after_script:
