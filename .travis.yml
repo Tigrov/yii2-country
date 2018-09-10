@@ -34,6 +34,14 @@ before_script:
       travis_retry composer require rinvex/country ~3.0
     fi
 
+  - mysql -e 'CREATE DATABASE `yiitest`;';
+  - psql -U postgres -c 'CREATE DATABASE yiitest;';
+
+script:
+  - vendor/bin/phpunit --verbose
+  echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest', 'username' => 'root',],],];' >> 'tests/data/config.local.php'
+  - vendor/bin/phpunit --verbose
+
 after_script:
   - |
     if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
