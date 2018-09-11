@@ -4,6 +4,11 @@ services:
 
 addons:
   postgresql: 9.4
+  apt:
+    sources:
+    - mysql-5.7-trusty
+    packages:
+    - mysql-server
 
 language: php
 
