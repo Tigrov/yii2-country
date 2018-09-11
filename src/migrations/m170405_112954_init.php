@@ -67,6 +67,7 @@ class m170405_112954_init extends Migration
         $time = microtime(true);
 
         try {
+            $options = '';
             switch ($this->db->driverName) {
                 case 'pgsql':
                     $this->db
@@ -80,10 +81,17 @@ class m170405_112954_init extends Migration
                     break;
                 case 'mysql':
                     $this->db->createCommand('SET NAMES utf8mb4')->execute();
+                    $list = [];
+                    foreach ($columns as $column) {
+                        $column = $this->db->quoteColumnName($column);
+                        $list[] = "$column = NULLIF($column, '')";
+                    }
+
+                    $options = 'SET ' . implode(', ', $list);
                 case 'oracle':
                 default:
                     $this->db
-                        ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"'")
+                        ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"'" . $options)
                         ->execute();
             }
             echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . 's)' . PHP_EOL;
