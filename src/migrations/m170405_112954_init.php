@@ -91,7 +91,7 @@ class m170405_112954_init extends Migration
                 case 'oracle':
                 default:
                     $this->db
-                        ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"'" . $options)
+                        ->createCommand("LOAD DATA INFILE '$csvFile' INTO TABLE $tableName FIELDS TERMINATED BY '" . static::CSV_DELIMITER . "' ENCLOSED BY '\"' ESCAPED BY '\"' " . $options)
                         ->execute();
             }
             echo ' done (time: ' . sprintf('%.3f', microtime(true) - $time) . 's)' . PHP_EOL;
