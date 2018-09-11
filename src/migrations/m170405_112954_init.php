@@ -30,7 +30,7 @@ class m170405_112954_init extends Migration
         $this->addPrimaryKey('country_pkey', '{{%country}}', ['code']);
 
         $this->createTable('{{%division}}', $this->getDivisionFields(), $tableOptions);
-        $this->loadFromCsv('{{%division}}', array_keys($this->getDivisionFields()), static::DIVISION_CSV);
+        $this->loadFromCsv('{{%division}}', array_keys($this->getDivisionFields()), static::DIVISION_CSV, $this->getLoadOptions(['geoname_id', 'capital_geoname_id', 'language_codes', 'timezone_code', 'latitude', 'longitude']));
         $this->addPrimaryKey('division_pkey', '{{%division}}', ['country_code', 'division_code']);
 
         $this->createTable('{{%division_translation}}', $this->getDivisionTranslationFields(), $tableOptions);
@@ -38,7 +38,7 @@ class m170405_112954_init extends Migration
         $this->addPrimaryKey('division_translation_pkey', '{{%division_translation}}', ['country_code', 'division_code', 'language_code']);
 
         $this->createTable('{{%city}}', $this->getCityFields(), $tableOptions);
-        $this->loadFromCsv('{{%city}}', array_keys($this->getCityFields()), static::CITY_CSV);
+        $this->loadFromCsv('{{%city}}', array_keys($this->getCityFields()), static::CITY_CSV, $this->getLoadOptions(['division_code', 'timezone_code', 'latitude', 'longitude']));
         $this->addPrimaryKey('city_pkey', '{{%city}}', ['geoname_id']);
         $this->createIndex('city_country_code_division_code', '{{%city}}', ['country_code', 'division_code']);
 
@@ -56,7 +56,7 @@ class m170405_112954_init extends Migration
         $this->dropTable('{{%city_translation}}');
     }
 
-    public function loadFromCsv($tableName, $columns, $csvFile)
+    public function loadFromCsv($tableName, $columns, $csvFile, $options = '')
     {
         if (pathinfo($csvFile, PATHINFO_EXTENSION) === 'gz') {
             $csvFile = static::ungzip($csvFile);
@@ -67,7 +67,6 @@ class m170405_112954_init extends Migration
         $time = microtime(true);
 
         try {
-            $options = '';
             switch ($this->db->driverName) {
                 case 'pgsql':
                     $this->db
@@ -81,13 +80,6 @@ class m170405_112954_init extends Migration
                     break;
                 case 'mysql':
                     $this->db->createCommand('SET NAMES utf8mb4')->execute();
-                    $list = [];
-                    foreach ($columns as $column) {
-                        $column = $this->db->quoteColumnName($column);
-                        $list[] = "$column = NULLIF($column, '')";
-                    }
-
-                    $options = 'SET ' . implode(', ', $list);
                 case 'oracle':
                 default:
                     $this->db
@@ -133,6 +125,21 @@ class m170405_112954_init extends Migration
         gzclose($gz);
 
         return $outFile;
+    }
+
+    public function getLoadOptions($columns)
+    {
+        $options = '';
+        if ($this->db->driverName == 'mysql') {
+            $list = [];
+            foreach ($columns as $column) {
+                $column = $this->db->quoteColumnName($column);
+                $list[] = "$column = NULLIF($column, '')";
+            }
+            $options = 'SET ' . implode(', ', $list);
+        }
+
+        return $options;
     }
 
     public function getCountryFields()
