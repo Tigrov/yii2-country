@@ -23,6 +23,8 @@ class m170405_112954_init extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             // https://stackoverflow.com/questions/10957238/incorrect-string-value-when-trying-to-insert-utf-8-into-mysql-via-jdbc
             $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
+            $this->db->createCommand('SET NAMES utf8mb4')->execute();
+            $this->db->createCommand("SET sql_mode = ''")->execute();
         }
 
         $this->createTable('{{%country}}', $this->getCountryFields(), $tableOptions);
@@ -79,7 +81,6 @@ class m170405_112954_init extends Migration
                         ->execute();
                     break;
                 case 'mysql':
-                    $this->db->createCommand('SET NAMES utf8mb4')->execute();
                 case 'oracle':
                 default:
                     $this->db
