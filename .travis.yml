@@ -35,6 +35,8 @@ install:
 
 before_script:
   - sudo chmod a+rX /home /home/travis /home/travis/build /home/travis/build/Tigrov /home/travis/build/Tigrov/yii2-country
+  - echo -e "[server]\nsecure-file-priv=" > /etc/mysql/my.cnf
+  - sudo service mysql restart
   - mysql -e 'CREATE DATABASE `yiitest`;'
   - psql -U postgres -c 'CREATE DATABASE yiitest;'
   - |
