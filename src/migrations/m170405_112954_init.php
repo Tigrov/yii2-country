@@ -79,6 +79,13 @@ class m170405_112954_init extends Migration
                         ->execute();
                     break;
                 case 'mysql':
+                    $securePath = $this->db->createCommand('SELECT @@secure_file_priv')->queryScalar();
+                    if ($securePath) {
+                        $securePath = rtrim($securePath, '\\/') . DIRECTORY_SEPARATOR;
+                        if (symlink($csvFile, $securePath . basename($csvFile))) {
+                            $csvFile = $securePath . basename($csvFile);
+                        }
+                    }
                     $this->db->createCommand('SET NAMES utf8mb4')->execute();
                 case 'oracle':
                 default:
