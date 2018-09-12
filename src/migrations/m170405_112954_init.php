@@ -4,6 +4,9 @@ namespace tigrov\country\migrations;
 
 use yii\db\Migration;
 
+@ini_set('memory_limit','-1');
+@set_time_limit(0);
+
 class m170405_112954_init extends Migration
 {
     const DATA_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR;
