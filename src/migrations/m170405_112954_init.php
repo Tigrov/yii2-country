@@ -17,7 +17,7 @@ class m170405_112954_init extends Migration
     const CITY_TRANSLATION_CSV = self::DATA_DIR . 'city_translation.csv.gz';
 
     const CSV_DELIMITER = ';';
-    const INSERT_ROWS = 20000;
+    const INSERT_ROWS = 10000;
 
     public function safeUp()
     {
