@@ -81,7 +81,7 @@ class Country extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function tableName()
     {
-        return 'country';
+        return '{{%country}}';
     }
 
     /**
