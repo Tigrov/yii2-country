@@ -21,6 +21,6 @@ class DivisionTranslation extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'division_translation';
+        return '{{%division_translation}}';
     }
 }
