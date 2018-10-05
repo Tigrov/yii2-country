@@ -37,7 +37,7 @@ class Division extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function tableName()
     {
-        return 'division';
+        return '{{%division}}';
     }
 
     /**
