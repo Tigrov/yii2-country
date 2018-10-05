@@ -33,7 +33,7 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
      */
     public static function tableName()
     {
-        return 'city';
+        return '{{%city}}';
     }
 
     /**
