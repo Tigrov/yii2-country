@@ -20,6 +20,6 @@ class CityTranslation extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'city_translation';
+        return '{{%city_translation}}';
     }
 }
