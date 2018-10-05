@@ -54,11 +54,11 @@ class m170405_112954_init extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%country}}');
-        $this->dropTable('{{%division}}');
-        $this->dropTable('{{%division_translation}}');
-        $this->dropTable('{{%city}}');
         $this->dropTable('{{%city_translation}}');
+        $this->dropTable('{{%city}}');
+        $this->dropTable('{{%division_translation}}');
+        $this->dropTable('{{%division}}');
+        $this->dropTable('{{%country}}');
     }
 
     public function loadFromCsv($tableName, $columns, $csvFile, $options = '')
