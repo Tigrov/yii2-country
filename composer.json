@@ -25,7 +25,7 @@
         }
     ],
     "suggest": {
-        "rinvex/country": "Allows access to additional data of countries. For PHP >=7.0 only."
+        "rinvex/countries": "Allows access to additional data of countries. For PHP >=7.0 only."
     },
     "autoload": {
         "psr-4": {

@@ -114,7 +114,7 @@ Addition
 --------
 
 - For additional information about countries (flags, codes, borders and other) use a library  
-https://github.com/rinvex/country  
+https://github.com/rinvex/countries 
 ```$country->rinvex```  
 or https://github.com/antonioribeiro/countries
 - For more information about Intl extension data see  
