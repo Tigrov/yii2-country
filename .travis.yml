@@ -41,12 +41,12 @@ before_script:
   - psql -U postgres -c 'CREATE DATABASE yiitest;'
   - |
     if [ $TRAVIS_PHP_VERSION != '5.6' ]; then
-      travis_retry composer require rinvex/country ~3.0
+      travis_retry composer require rinvex/countries ~5.0
     fi
 
 script:
   - phpunit
-  - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root",],],];' >> 'tests/data/config.local.php'
+  - echo '<?php return ["components" => ["db" => ["dsn" => "mysql:host=127.0.0.1;dbname=yiitest", "username" => "root"]]];' >> 'tests/data/config.local.php'
   - phpunit
 
 after_script:
