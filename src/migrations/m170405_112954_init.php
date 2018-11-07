@@ -74,9 +74,16 @@ class m170405_112954_init extends Migration
         try {
             switch ($this->db->driverName) {
                 case 'pgsql':
-                    $this->db
-                        ->createCommand("COPY $tableName FROM '$csvFile' DELIMITER '" . static::CSV_DELIMITER . "' QUOTE '\"' ESCAPE '\"' CSV")
-                        ->execute();
+                    $transaction = $this->db->beginTransaction();
+                    try {
+                        $this->db
+                            ->createCommand("COPY $tableName FROM '$csvFile' DELIMITER '" . static::CSV_DELIMITER . "' QUOTE '\"' ESCAPE '\"' CSV")
+                            ->execute();
+                    } catch (\Exception $e) {
+                        $transaction->rollBack();
+                        throw $e;
+                    }
+                    $transaction->commit();
                     break;
                 case 'mssql':
                     $this->db
