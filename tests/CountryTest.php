@@ -198,7 +198,7 @@ class CountryTest extends TestCase
 
     public function testRinvex()
     {
-        if (PHP_MAJOR_VERSION >= 7) {
+        if (PHP_MAJOR_VERSION >= 7 && PHP_MINOR_VERSION >= 1) {
             $this->assertSame('.ru', Country::create('RU')->rinvex->getTld());
             $this->assertSame('.us', Country::create('US')->rinvex->getTld());
         }
