@@ -12,6 +12,8 @@ use yii\base\BaseObject;
  * Class Currency
  * @package tigrov\country
  *
+ * @property string $code ISO 4217 currency code
+ * @property string $name currency name
  * @method static string[] mainCodes() Returns list of main ISO 4217 currency codes
  * @method static array allNames() Returns all supported currency names include old and not used
  * @method static string|null findMainCode(string[] $codes) Find main currency code in a list

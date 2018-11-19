@@ -12,6 +12,8 @@ use yii\base\BaseObject;
  * Class Timezone
  * @package tigrov\country
  *
+ * @property string $code timezone code
+ * @property string $name timezone name
  * @method static string[] codes(string $countryCode = null) Returns time zone names from IANA tame zone database
  * @method static array names(string[] $codes = null) Returns list of timezone names
  * @method static string intlName(\IntlTimeZone $intlTimeZone) Generate timezone name from Intl data

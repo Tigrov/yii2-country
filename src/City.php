@@ -17,6 +17,8 @@ use yii\db\Expression;
  * @property string $name_en
  * @property string $timezone_code
  *
+ * @property string $code city code
+ * @property string $name city name
  * @property Country $country
  * @property string $countryName
  * @property Division $division
@@ -85,13 +87,18 @@ class City extends \yii\db\ActiveRecord implements ModelInterface
             ->column();
     }
 
+    /**
+     * Returns city code
+     * @return int
+     */
     public function getCode()
     {
         return $this->geoname_id;
     }
 
     /**
-     * @inheritdoc
+     * Returns city name
+     * @return string
      */
     public function getName()
     {

@@ -12,6 +12,14 @@ use yii\base\BaseObject;
  * Class Region
  * @package tigrov\country
  *
+ * @property string $code UN region code
+ * @property string $name region name
+ * @property string[] $subregionCodes list of region's UN subregion codes
+ * @property array $subregionNames list of region's subregion names
+ * @property Subregion[] $subregions list of region's subregions
+ * @property string[] $countryCodes list of continent's ISO 3166-1 alpha-2 country codes
+ * @property array $countryNames list of continent's country names
+ * @property Country[] $countries list of continent's countries
  * @method static array countryCodes(string $regionCode = null) Returns list of ISO 3166-1 alpha-2 country codes for a region
  * @method static string countryRegionCode(string $countryCode) Returns UN region code for a country
  */

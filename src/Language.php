@@ -12,6 +12,11 @@ use yii\base\BaseObject;
  * Class Language
  * @package tigrov\country
  *
+ * @property string $code ISO 639 language code
+ * @property string $name language name
+ * @property string[] $localeCodes list of language's locale codes
+ * @property array $localeNames list of language's locale names
+ * @property Locale[] $locales list of language's locales
  * @method static string[] mainCodes() Returns list of main ISO 639-1 language codes
  * @method static string languageName(string $code) Returns name of a language in the language
  * @method static array languageNames(string[] $codes = null, bool $sort = true) Returns list of language names in the each language

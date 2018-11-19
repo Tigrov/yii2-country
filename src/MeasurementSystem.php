@@ -12,6 +12,8 @@ use yii\base\BaseObject;
  * Class MeasurementSystem
  * @package tigrov\country
  *
+ * @property string $code measurement system code
+ * @property string $name measurement system name
  * @method static string countryMeasurementSystemCode(string $countryCode) Returns measurement system code for a country
  */
 class MeasurementSystem extends BaseObject implements ModelInterface

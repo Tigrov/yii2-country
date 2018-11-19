@@ -12,6 +12,11 @@ use yii\base\BaseObject;
  * Class Locale
  * @package tigrov\country
  *
+ * @property string $code locale code
+ * @property string $name locale name
+ * @property string $languageCode locale's ISO 639 language code
+ * @property string $languageName locale's language name
+ * @property Language $language locale's language
  * @method static string localeName(string $code) Returns name of a locale in the locale language
  * @method static array localeNames(string[] $codes = null, bool $sort = true) Returns list of locale names in the each locale language
  * @method static string acceptCode(string $header = null) Tries to find out best available locale based on HTTP “Accept-Language” header
