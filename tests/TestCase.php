@@ -13,7 +13,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @inheritdoc
      */
-    protected function setUp() /* The :void return type declaration that should be here would cause a BC issue */
+    protected function setUp() : void
     {
         parent::setUp();
 
@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * Clean up after test.
      * By default the application created with [[mockApplication]] will be destroyed.
      */
-    protected function tearDown()
+    protected function tearDown() : void
     {
         parent::tearDown();
 
