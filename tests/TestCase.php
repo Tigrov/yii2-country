@@ -13,7 +13,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @inheritdoc
      */
-    protected function setUp()
+    protected function setUp() /* The :void return type declaration that should be here would cause a BC issue */
     {
         parent::setUp();
 
